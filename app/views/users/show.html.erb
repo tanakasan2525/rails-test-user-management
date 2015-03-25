@@ -1,0 +1,43 @@
+<% @title = 'Account Information' %>
+<h1><%= @title %></h1>
+
+<div class='table-wrapper'>
+	<div class='links'>
+		<%= link_to 'Edit Account', :edit_account %>
+		<%= link_to 'Change Password', :edit_password %>
+	</div>
+
+	<table class='attributes'>
+		<tr>
+			<th>Name</th>
+			<td>
+				<%= @user.family_name %>
+				<%= @user.given_name %>
+			</td>
+		</tr>
+		<tr>
+			<th>フリガナ</th>
+			<td>
+				<%= @user.family_name_kana %>
+				<%= @user.given_name_kana %>
+			</td>
+		</tr>
+		<tr>
+			<th>Email</th>
+			<td class='email'>
+				<%= @user.email %>
+			</td>
+		</tr>
+		<tr>
+			<th>Password</th>
+			<td class="password">*************</td>
+		</tr>
+		<tr>
+			<th>Start date</th>
+			<td class='date'>
+				<%= @user.start_date.strftime('%Y/%m/%d') %>
+			</td>
+		</tr>
+	</table>
+</div>
+

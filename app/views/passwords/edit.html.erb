@@ -1,0 +1,22 @@
+<% @title = 'Change Password' %>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+	<%= form_for @change_password_form, url: :password,
+		method: :patch do |f| %>
+		<%= markup do |m|
+			p = FormPresenter.new(f, self)
+			p.with_options(required: true, size: 32) do |q|
+				m << q.password_field_block(:current_password, 'Current password')
+				m << q.password_field_block(:new_password, 'New password')
+				m << q.password_field_block(:new_password_confirmation,
+					'New password (Confirm)')
+			end
+		end %>
+		<div class='buttons'>
+			<%= f.submit 'Update' %>
+			<%= link_to 'Cancel', :account %>
+		</div>
+	<% end %>
+</div>
+

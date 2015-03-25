@@ -1,0 +1,42 @@
+<% @title = 'User Management' %>
+<h1><%= @title %></h1>
+
+<div class='table-wrapper'>
+	<div class='links'>
+		<%= link_to 'Sign up', :new_admin_user %>
+	</div>
+
+	<table class='listing'>
+		<tr>
+			<th>Name</th>
+			<th>フリガナ</th>
+			<th>Email</th>
+			<th>Start date</th>
+			<th>End date</th>
+			<th>Suspended</th>
+			<th>Action</th>
+		</tr>
+		<% @users.each do |u| %>
+			<% p = UserPresenter.new(u, self) %>
+			<tr>
+				<td><%= p.full_name %></td>
+				<td><%= p.full_name_kana %></td>
+				<td class='email'><%= u.email %></td>
+				<td class='date'><%= u.start_date.strftime('%Y/%m/%d') %></td>
+				<td class='date'><%= u.end_date.try(:strftime, '%Y/%m/%d') %></td>
+				<td class='boolean'><%= p.suspended_mark %></td>
+				<td class='actions'>
+					<%= link_to 'Edit', [ :edit, :admin, u ] %> |
+					<%= link_to 'Events', [ :admin, u, :events ] %> |
+					<%= link_to 'Delete', [ :admin, u ], method: :delete,
+						data: { confirm: 'Really delete?' } %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+
+	<div class='links'>
+		<%= link_to 'Sign up', :new_admin_user %>
+	</div>
+</div>
+

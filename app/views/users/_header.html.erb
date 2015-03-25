@@ -1,0 +1,13 @@
+<header>
+	<span class="logo-mark">Teamdev</span>
+	<%= content_tag(:span, flash.notice, class: 'notice') if flash.notice %>
+	<%= content_tag(:span, flash.alert, class: 'alert') if flash.alert %>
+	<%=
+		if current_user
+			link_to 'Logout', :session, method: :delete
+		else
+			link_to 'Login', :login
+		end
+	%>
+	<%= link_to 'Account', :account if current_user %>
+</header>
